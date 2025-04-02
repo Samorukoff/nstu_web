@@ -15,6 +15,7 @@ header, footer {
 
   a {
     text-decoration: none;
+    transition: 1s 2s;
   }
   a:link {
     color: rgb(51, 51, 102);
@@ -27,9 +28,9 @@ header, footer {
     color: rgb(170, 85, 250);
     text-decoration: underline;
     text-shadow: 2px 2px 4px rgb(170, 85, 250);
+    transition: 0.3s;
   }
   a:active {
     color: black;
     opacity: 0.7;
   }
-  
