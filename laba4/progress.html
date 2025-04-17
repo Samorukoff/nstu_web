@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 4</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-132x32.png">
+        <style>
+            .box {
+                text-align: center;
+                width: 400px;
+                height: 200px;
+                border: 5px solid rgb(51, 51, 102);
+                background-color: aliceblue;
+                margin: auto;
+            }
+            .text {
+                color: rgb(51, 51, 102);
+                font-size: 30px;
+                text-align: center;
+                font-weight: bold;
+            }
+            .progress-box {
+                width: 300px;
+                height: 30px;
+                border: 5px, solid, rgb(51, 51, 102);
+                margin: auto;
+                position: relative;
+            }
+            .progress-bar {
+                width: 0;
+                height: 100%;
+                background-color: rgba(127, 0, 255, 0.5);
+                position: absolute;
+                transition: width 5s linear;
+            }
+            button {
+                width: 200px;
+                height: 30px;
+                color: white;
+                font-size: 15px;
+                background-color: rgb(51, 51, 102);
+                border-radius: 5px;
+                box-shadow: 5px 5px 5px rgba(127, 0, 255, 0.5);
+                margin: auto;
+                position: relative;
+                top: 100px;
+                cursor: pointer;
+            }
+            button:hover {
+                box-shadow: 5px 5px 10px rgba(127, 0, 255, 0.8);
+            }  
+            button:active {
+                box-shadow: none;
+            }    
+            button:active + .progress-box .progress-bar{
+                width:100%
+            }   
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+        </header>
+        <main>
+            <div class="box">
+                <div class="text">Установить GTA 6</div>
+                <button>Нажмите и удерживайте</button>
+                <div class="progress-box">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
