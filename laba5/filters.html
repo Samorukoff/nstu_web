@@ -26,6 +26,7 @@
                 let contrast = document.getElementById('contrastValue').value + '%';
                 let grayScale = document.getElementById('grayScaleValue').value + '%';
                 let hueRotate = document.getElementById('hueRotateValue').value + 'deg';
+                let invert = document.getElementById('invertValue').value + '%';
 
                 // Выводим обозначения около индикаторов
                 document.getElementById('blurOutput').innerText = blur;
@@ -33,10 +34,11 @@
                 document.getElementById('contrastOutput').innerText = contrast;
                 document.getElementById('grayScaleOutput').innerText = grayScale;
                 document.getElementById('hueRotateOutput').innerText = hueRotate;
+                document.getElementById('invertOutput').innerText = invert;
 
                 // Формируем фильтр и применяем
                 let filter = `blur(${blur}) brightness(${brightness}) contrast(${contrast})
-                              grayscale(${grayScale}) hue-rotate(${hueRotate})`;
+                              grayscale(${grayScale}) hue-rotate(${hueRotate}) invert(${invert})`;
                 document.getElementById('filterImage').style.filter = filter;
             }
 
@@ -51,7 +53,7 @@
 
             .block_of_filters {
                 position: absolute;
-                top: 30%;
+                top: 20%;
                 left: 60px;
             }
 
@@ -89,6 +91,11 @@
                 <div>Hue-rotate:</div>
                 <input type="range" min="0" max="360" value="0" onchange="applyFilters()" id="hueRotateValue">
                 <span id="hueRotateOutput"></span>
+            </div>
+            <div class="filter">
+                <div>Invert:</div>
+                <input type="range" min="0" max="100" value="0" onchange="applyFilters()" id="invertValue">
+                <span id="invertOutput"></span>
             </div>
         </div>
         <footer ondblclick="showMessage()">
