@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 5</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-132x32.png">
+        <script>
+            function showAuthor() {
+                let author = 'Автор страницы:\nСаморуков Никита Олегович';
+                alert (author);
+            }
+            function showMessage() {
+                let message = 'Лабораторная работа 5\nФБ НГТУ 19.04.2025';
+                alert (message);
+            }
+            function dynamicFilter(margin, pic_width) {
+                let x = this.event.x;
+                let filter = ((x - margin) / pic_width * 100) + '%';
+                let img = document.getElementById('filterImage');
+                let label = document.getElementById('label');
+
+                img.style.filter = `grayscale(${filter})`;
+                label.innerHTML = `Grayscale: ${filter}`;
+
+                if (this.event.ctrlKey) {
+                    let filter = ((x - margin) / pic_width * 360) + 'deg';
+                    img.style.filter = `hue-rotate(${filter})`;
+                    label.innerText = `Hue-rotate: ${filter}`;
+                }
+
+                if (this.event.altKey) {
+                    let filter = ((x - margin) / pic_width * 100) + '%';
+                    img.style.filter = `invert(${filter})`;
+                    label.innerText = `Invert: ${filter}`;
+                }
+
+                if (this.event.shiftKey) {
+                    let filter = ((x - margin) / pic_width * 100) + '%';
+                    img.style.filter = `sepia(${filter})`;
+                    label.innerText = `Sepia: ${filter}`;
+                }
+            }
+        </script>
+        <style>
+            .info {
+                font-size: 20px;
+                color: rgb(51, 51, 102);
+            }
+            #label {
+                font-size: 20px;
+                color: rgb(51, 51, 102);
+            }
+        </style>
+    </head>
+    <body>
+        <header onclick="showAuthor()">
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+        <main>
+            <div class="info">При наведении будет работать фильтр <b>Grayscale</b><br>
+                              При зажатии Ctrl - <b>Hue-rotate</b><br>
+                              При зажатии Alt - <b>Invert</b><br>
+                              При зажатии Shift - <b>Sepia</b></div>
+            <img src="pepe_deluxe.png" id="filterImage" onmousemove="dynamicFilter(20, 1280)">
+            <div id="label"></div>
+        </main>
+        <footer ondblclick="showMessage()">
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
