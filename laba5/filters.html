@@ -24,17 +24,19 @@
                 let blur = document.getElementById('blurValue').value + 'px';
                 let brightness = document.getElementById('brightnessValue').value + '%';
                 let contrast = document.getElementById('contrastValue').value + '%';
-                let grayscale = document.getElementById('grayscaleValue').value + '%';
+                let grayScale = document.getElementById('grayScaleValue').value + '%';
+                let hueRotate = document.getElementById('hueRotateValue').value + 'deg';
 
                 // Выводим обозначения около индикаторов
                 document.getElementById('blurOutput').innerText = blur;
                 document.getElementById('brightnessOutput').innerText = brightness;
                 document.getElementById('contrastOutput').innerText = contrast;
-                document.getElementById('contrastOutput').innerText = contrast;
+                document.getElementById('grayScaleOutput').innerText = grayScale;
+                document.getElementById('hueRotateOutput').innerText = hueRotate;
 
                 // Формируем фильтр и применяем
                 let filter = `blur(${blur}) brightness(${brightness}) contrast(${contrast})
-                              grayscale(${grayscale})`;
+                              grayscale(${grayScale}) hue-rotate(${hueRotate})`;
                 document.getElementById('filterImage').style.filter = filter;
             }
 
@@ -80,8 +82,13 @@
             </div>
             <div class="filter">
                 <div>Gray scale:</div>
-                <input type="range" min="0" max="100" value="0" onchange="applyFilters()" id="grayscaleValue">
-                <span id="grayscaleOutput"></span>
+                <input type="range" min="0" max="100" value="0" onchange="applyFilters()" id="grayScaleValue">
+                <span id="grayScaleOutput"></span>
+            </div>
+            <div class="filter">
+                <div>Hue-rotate:</div>
+                <input type="range" min="0" max="360" value="0" onchange="applyFilters()" id="hueRotateValue">
+                <span id="hueRotateOutput"></span>
             </div>
         </div>
         <footer ondblclick="showMessage()">
