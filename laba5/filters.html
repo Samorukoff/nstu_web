@@ -24,15 +24,17 @@
                 let blur = document.getElementById('blurValue').value + 'px';
                 let brightness = document.getElementById('brightnessValue').value + '%';
                 let contrast = document.getElementById('contrastValue').value + '%';
+                let grayscale = document.getElementById('grayscaleValue').value + '%';
 
                 // Выводим обозначения около индикаторов
                 document.getElementById('blurOutput').innerText = blur;
                 document.getElementById('brightnessOutput').innerText = brightness;
                 document.getElementById('contrastOutput').innerText = contrast;
+                document.getElementById('contrastOutput').innerText = contrast;
 
                 // Формируем фильтр и применяем
-                let filter = `blur(${blur}) brightness(${brightness}) contrast(${contrast})`
-                                ;
+                let filter = `blur(${blur}) brightness(${brightness}) contrast(${contrast})
+                              grayscale(${grayscale})`;
                 document.getElementById('filterImage').style.filter = filter;
             }
 
@@ -75,6 +77,11 @@
                 <div>Contrast:</div>
                 <input type="range" min="0" max="500" value="100" onchange="applyFilters()" id="contrastValue">
                 <span id="contrastOutput"></span>
+            </div>
+            <div class="filter">
+                <div>Gray scale:</div>
+                <input type="range" min="0" max="100" value="0" onchange="applyFilters()" id="grayscaleValue">
+                <span id="grayscaleOutput"></span>
             </div>
         </div>
         <footer ondblclick="showMessage()">
