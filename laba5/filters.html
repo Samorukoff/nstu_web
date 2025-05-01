@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 5</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-132x32.png">
+        <script>
+            function showAuthor() {
+                let author = 'Автор страницы:\nСаморуков Никита Олегович';
+                alert (author);
+            }
+
+            function showMessage() {
+                let message = 'Лабораторная работа 5\nФБ НГТУ 19.04.2025';
+                alert (message);
+            }
+
+            function blurChange() {
+                let value = document.getElementById('blurValue').value + 'px';
+                document.getElementById('blurOutput').innerText = value;
+                document.getElementById('blurImage').style.filter = 'blur(' + value + ')';
+            }
+        </script>
+        <style>
+            img {
+                height: 450px;
+                margin: auto;
+                border-radius: 20px;
+                display: inline-block;
+            }
+            .indicator{
+                display: inline-block;
+                margin: auto;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header onclick="showAuthor()">
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+        <main>
+            <div class="indicator">
+                Фильтр blur:
+                <input type="range" min="0" max="20" value="0" onchange="blurChange()" id="blurValue">
+                <span id="blurOutput"></span>
+            </div>
+            <div><img src="pepe.jpg" id="blurImage"></div>
+        <footer ondblclick="showMessage()">
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
