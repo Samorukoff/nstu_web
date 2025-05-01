@@ -23,13 +23,16 @@
                 // Достаем переменные
                 let blur = document.getElementById('blurValue').value + 'px';
                 let brightness = document.getElementById('brightnessValue').value + '%';
+                let contrast = document.getElementById('contrastValue').value + '%';
 
                 // Выводим обозначения около индикаторов
                 document.getElementById('blurOutput').innerText = blur;
                 document.getElementById('brightnessOutput').innerText = brightness;
+                document.getElementById('contrastOutput').innerText = contrast;
 
                 // Формируем фильтр и применяем
-                let filter = `blur(${blur}) brightness(${brightness})`;
+                let filter = `blur(${blur}) brightness(${brightness}) contrast(${contrast})`
+                                ;
                 document.getElementById('filterImage').style.filter = filter;
             }
 
@@ -67,6 +70,11 @@
                 <div>Brightness:</div>
                 <input type="range" min="0" max="500" value="100" onchange="applyFilters()" id="brightnessValue">
                 <span id="brightnessOutput"></span>
+            </div>
+            <div class="filter">
+                <div>Contrast:</div>
+                <input type="range" min="0" max="500" value="100" onchange="applyFilters()" id="contrastValue">
+                <span id="contrastOutput"></span>
             </div>
         </div>
         <footer ondblclick="showMessage()">
