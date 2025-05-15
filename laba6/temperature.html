@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-132x32.png">
+        <script src="books.js"></script>
+        <script>
+            function showAuthor() {
+                let author = 'Автор страницы:\nСаморуков Никита Олегович';
+                alert (author);
+            }
+
+            function showMessage() {
+                let message = 'Лабораторная работа 6\nФБ НГТУ 03.05.2025';
+                alert (message);
+            }
+            
+            let temperatures = [];
+            let previous = null;
+
+            function showTemp() {
+                const chart = document.getElementById('chart');
+                const info = document.getElementById('info');
+
+                // Генерация случайных температур
+                for (let i = 0; i < 30; i++) {
+                    const min = Math.floor(Math.random() * 15) + 5;
+                    const max = min + Math.floor(Math.random() * 10) + 1; 
+                    temperatures.push({ min, max });
+                }
+
+                // Создание графика
+                temperatures.forEach((temp, i) => { 
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    const maxHeight = 350;
+                    const maxPossible = 40;
+                    const heightRatio = maxHeight / maxPossible;
+
+                    const minBar = document.createElement('div');
+                    minBar.className = 'min-temp';
+                    minBar.style.height = (temp.min * heightRatio) + 'px'; 
+
+                    const maxBar = document.createElement('div');
+                    maxBar.className = 'max-temp';
+                    maxBar.style.height = ((temp.max - temp.min) * heightRatio) + 'px';
+
+                    const maxLabel = document.createElement('div');
+                    maxLabel.className = 'temp-label';
+                    maxLabel.textContent = `${temp.max}`;
+
+                    const minLabel = document.createElement('div');
+                    minLabel.className = 'temp-label';
+                    minLabel.textContent = `${temp.min}`;
+                    minLabel.style.top = `${(temp.max - temp.min) * heightRatio - 10}px`;
+
+                    bar.appendChild(minLabel);
+                    bar.appendChild(maxLabel);
+                    bar.appendChild(maxBar);
+                    bar.appendChild(minBar);
+                    chart.appendChild(bar);
+                });
+            }
+            function findBtn() {
+                const input = document.getElementById('dayInput').value;
+                const value = Number(input);
+                const chart = document.getElementById('chart');
+                const info = document.getElementById('info');
+                const error = document.getElementById('error');
+
+                info.innerHTML = '';
+                error.textContent = '';
+
+                if (!Number.isInteger(value)) {
+                    error.textContent = 'Ошибка: введите целое число.';
+                    return;
+                }
+                if (value < 1 || value > 30) {
+                    error.textContent = 'Ошибка: введите число от 1 до 30.';
+                    return;
+                }
+
+                const index = value - 1;
+
+                if (previous !== null) {
+                    chart.children[previous].classList.remove('selected');
+                }
+
+                const bar = chart.children[index];
+                bar.classList.add('selected');
+                previous = index;
+
+                const { min, max } = temperatures[index];
+                info.innerHTML = `
+                    <span>Минимальная температура: ${min}°C</span>
+                    <span>Максимальная температура: ${max}°C</span>
+                `;
+            }
+        </script>
+        <style>
+            main {
+                border: 5px solid rgb(51, 51, 102);
+                padding: 20px;
+                max-width: 700px;
+                margin: auto;
+                margin-top: 2gi0px;
+                color: rgb(51, 51, 102);
+                text-align: center;
+            }
+        
+            #chart {
+                display: flex;
+                align-items: flex-end;
+                height: 250px;
+                border-bottom: 2px solid rgb(51, 51, 102);
+                margin-bottom: 20px;
+            }
+            .bar {
+                position: relative;
+                width: 20px;
+                margin: 0 2px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+            }
+            .min-temp {
+                background-color: rgb(14, 14, 133);
+                width: 100%;
+            }
+            .max-temp {
+                background-color: rgb(223, 8, 8);
+                width: 100%;
+            }
+            .bar.selected .min-temp {
+                background-color: rgb(48, 214, 243);
+            }
+        
+            .bar.selected .max-temp {
+                background-color: rgb(245, 154, 49);
+            }
+            .temp-label {
+                position: absolute;
+                color: white;
+                text-shadow:
+                    -1px -1px 0 black,
+                    1px -1px 0 black,
+                    -1px  1px 0 black,
+                    1px  1px 0 black;
+                font-size: 12px;
+                top: -15px;
+                font-weight: bold;
+            }
+    
+            #info {
+                margin-top: 10px;
+                font-weight: bold;
+            }
+        
+            #info span {
+                display: block;
+                margin-top: 4px; 
+            }
+            #error {
+                margin-top: 10px;
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body onload="showTemp()()">
+        <header onclick="showAuthor()">
+            НГТУ, ФБ, Лабораторная работа 6
+        </header>
+        <main>
+            <h2>Температура по дням в °C</h2>
+            <div id="chart"></div>
+            <div>
+                <label>Введите день (от 1 до 30): </label>
+                <input type="number" id="dayInput" min="1" max="30">
+                <button onclick="findBtn()">найти</button>
+            </div>
+            <div id="error"></div>
+            <div id="info"></div>
+
+        </main>
+        <footer ondblclick="showMessage()">
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
