@@ -30,14 +30,73 @@
                 out.innerHTML += `Дата и время для греческой локали: <b>${today.toLocaleString('el')}</b><br>`;
             }
 
+            function changeColors(){
+                const header = document.getElementsByTagName('header')[0];
+                const footer = document.getElementsByTagName('footer')[0];
+                let rgb = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+                header.style.backgroundColor = rgb;
+                footer.style.backgroundColor = rgb;
+            }
+
+            let timerNum;
+
+            function startChangeColors() {
+                timerNum = setInterval(changeColors, 1000);
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+
+            function stopChangeColors() {
+                clearInterval(timerNum);
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
+            }
+
+            let dateTimer
+            function startTime() {
+                showDate();
+                dateTimer = setInterval(showDate, 100);
+                document.getElementById('start-time-btn').disabled = true;
+                document.getElementById('stop-time-btn').disabled = false;
+            }
+
+            function stopTime() {
+                clearInterval(dateTimer);
+                document.getElementById('start-time-btn').disabled = false;
+                document.getElementById('stop-time-btn').disabled = true;
+            }
         </script>
         <style>
+            header {
+                transition: 1s;
+            }
+            footer {
+                transition: 1s;
+            }
             h1 {
                 text-align: left;
                 margin-left: 0;
             }
+            button {
+                width:200px;
+                height: 30px;
+                margin: 5px;
+                margin-left: 0;
+                background-color: rgb(51, 51, 102);
+                border-radius: 5px;
+                color: white;
+                font-size: 15px;
+                cursor: pointer;
+            }
+            button:disabled {
+                background-color: gray;
+                color: #ccc;
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
             #current-date {
                 margin: auto;
+                margin-bottom: 20px;
                 text-align: left;
                 font-size: 25px;
                 line-height: 40px;
@@ -51,6 +110,14 @@
         <main>
             <h1>Дата и время</h1>
             <div id="current-date"></div>
+            <div>
+                <button onclick="startChangeColors()" id="start-btn">Старт</button>
+                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button>
+            </div>
+            <div>
+                <button onclick="startTime()" id="start-time-btn">Запустить время</button>
+                <button onclick="stopTime()" disabled id="stop-time-btn">Остановить время</button>
+            </div>
         </main>
         <footer ondblclick="showMessage()">
             &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
