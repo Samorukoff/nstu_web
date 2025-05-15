@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-132x32.png">
+        <script>
+            function showAuthor() {
+                let author = 'Автор страницы:\nСаморуков Никита Олегович';
+                alert (author);
+            }
+
+            function showMessage() {
+                let message = 'Лабораторная работа 6\nФБ НГТУ 03.05.2025';
+                alert (message);
+            }
+
+            function showDiagram() {
+                let data = [36, 86, 55, 28, 92, 60, 41, 17, 9, 43]
+                let colors = ['#4caf50', '#3f51b5', '#ff9800', '#e91e63', '#009688',
+                              '#9c27b0', '#2196f3', '#ffc107', '#795548', '#00bcd4']
+                let bars = document.getElementsByClassName('bar')
+                const diagHeight = document.getElementById('diag').clientHeight
+                const maxData = Math.max(...data);
+                const k = diagHeight/maxData*0.9;
+                for (let i = 0; i < data.length; i++) {
+                    bars[i].style.height = k*data[i] + 'px';
+                    bars[i].style.backgroundColor = colors[i];
+                    bars[i].innerHTML = `<span id='label'>${data[i]}</span>`;
+                }
+            }
+
+        </script>
+        <style>
+            #diag {
+                height: 500px;
+            }
+
+            .bar {
+                width: 50px;
+                background-color: blueviolet;
+                border: 1px solid rgb(51, 51, 102);
+                display: inline-block;
+            }
+
+            #label {
+                position: absolute;
+                color: white;
+                font-size: 20px;
+                text-shadow:
+                    -1px -1px 0 black,
+                    1px -1px 0 black,
+                    -1px  1px 0 black,
+                    1px  1px 0 black;
+            }
+
+        </style>
+    </head>
+    <body onload="showDiagram()">
+        <header onclick="showAuthor()">
+            НГТУ, ФБ, Лабораторная работа 6
+        </header>
+        <main>
+            <div id="diag">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </main>
+        <footer ondblclick="showMessage()">
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
