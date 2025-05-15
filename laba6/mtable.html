@@ -20,10 +20,20 @@
             }
             
             function showMultipleTable() {
+                let inputStart = document.getElementById('start')
+                let inputStop = document.getElementById('stop')
+                let start = parseInt(inputStart.value)
+                let stop = parseInt(inputStop.value)
+                if (start > stop) {
+                    alert ('Некорректный ввод')
+                    return;
+                }
+                let inputMultiple = document.getElementById('multiple')
+                let multiple = parseInt(inputMultiple.value)
                 let tbl = document.getElementById('mtable')
                 tbl.innerHTML = '<h1>Таблица умножения</h1>';
-                for (i = 0; i <= 10; i++) {
-                    let s = `<div id='row'>${i} * 7 = ${i*7}</div>`;
+                for (i = start; i <= stop; i++) {
+                    let s = `<div id='row'>${i} * ${multiple} = ${i*multiple}</div>`;
                     tbl.innerHTML += s;
                 }
             }
@@ -32,22 +42,24 @@
         <style>
             #mtable {
                 width: 400px;
-                height: 530px;
-                margin:auto;
-                border: 10px, solid, rgb(51, 51, 102);
                 border-radius: 20px;
-                transition: 1s;
-            }
-
-            #mtable:hover {
-                box-shadow: 0 0 30px rgba(127, 0, 255, 0.8);
-                transition: 1s;
+                margin-bottom: 20px;
             }
 
             #row {
                 font-size: 25px;
                 text-align: left;
-                padding-left: 150px;
+                margin-left: 20px;
+            }
+            label {
+                margin-left: 20px;
+            }
+            #button {
+                width: 100px;
+                background-color: rgb(51, 51, 102);
+                color: white;
+                margin-left: 20px;
+                margin-top: 5px;
             }
 
         </style>
@@ -58,6 +70,10 @@
         </header>
         <main>
             <div id="mtable"></div>
+            <label>Умножить на: <input type="number" value="2" id="multiple"></label><br>
+            <label>Начать с: <input type="number" value="1" id="start"></label><br>
+            <label>Закончить на: <input type="number" value="10" id="stop"></label><br>
+            <input id="button" type="button" value ="Таблица" onclick="showMultipleTable()">
         </main>
         <footer ondblclick="showMessage()">
             &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
