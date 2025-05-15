@@ -10,6 +10,16 @@
         <link rel="icon" href="../favicon-132x32.png">
         <script src="books.js"></script>
         <script>
+            function showAuthor() {
+                let author = 'Автор страницы:\nСаморуков Никита Олегович';
+                alert (author);
+            }
+
+            function showMessage() {
+                let message = 'Лабораторная работа 6\nФБ НГТУ 03.05.2025';
+                alert (message);
+            }
+            
             function showBooks() {
                 const bookList = document.getElementById('bookList');
                 for(let i = 0; i < books.length; i++) {

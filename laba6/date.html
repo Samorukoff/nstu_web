@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-132x32.png">
+        <script src="books.js"></script>
+        <script>
+            function showAuthor() {
+                let author = 'Автор страницы:\nСаморуков Никита Олегович';
+                alert (author);
+            }
+
+            function showMessage() {
+                let message = 'Лабораторная работа 6\nФБ НГТУ 03.05.2025';
+                alert (message);
+            }
+            
+            function showDate() {
+                let out = document.getElementById('current-date')
+                let today = new Date();
+                out.innerHTML = `Дата и время для русской локали: <b>${today.toLocaleString('ru-RU')}</b><br>`;
+                out.innerHTML += `Дата и время для беларусской локали: <b>${today.toLocaleString('be-BY')}</b><br>`;
+                out.innerHTML += `Дата и время для итальянской локали: <b>${today.toLocaleString('it')}</b><br>`;
+                out.innerHTML += `Дата и время для китайской локали: <b>${today.toLocaleString('zh')}</b><br>`;
+                out.innerHTML += `Дата и время для греческой локали: <b>${today.toLocaleString('el')}</b><br>`;
+            }
+
+        </script>
+        <style>
+            h1 {
+                text-align: left;
+                margin-left: 0;
+            }
+            #current-date {
+                margin: auto;
+                text-align: left;
+                font-size: 25px;
+                line-height: 40px;
+            }
+        </style>
+    </head>
+    <body onload="showDate()">
+        <header onclick="showAuthor()">
+            НГТУ, ФБ, Лабораторная работа 6
+        </header>
+        <main>
+            <h1>Дата и время</h1>
+            <div id="current-date"></div>
+        </main>
+        <footer ondblclick="showMessage()">
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
