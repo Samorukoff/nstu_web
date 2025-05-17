@@ -9,14 +9,23 @@
         <link rel="icon" href="../favicon-16x16.png">
         <link rel="icon" href="../favicon-132x32.png">
     </head>
+    <script>
+        function addNewBlock () {
+            let newBlock = document.createElement('div');
+            let rgb = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+            newBlock.style.backgroundColor = rgb;
+            newBlock.style.height = '40px';
+            newBlock.style.margin = '20px';
+
+            document.querySelector('main').appendChild(newBlock);
+        }
+    </script>
     <body>
         <header>
             НГТУ, ФБ, Лабораторная работа 7
         </header>
         <main>
-            <ul>
-                <li><a href="bloks.html">Добавление блоков</a></li>
-            </ul>
+            <button onclick="addNewBlock()">Добавить блок</button>
         </main>
         <footer>
             &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
