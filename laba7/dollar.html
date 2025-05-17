@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 7</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-132x32.png">
+        <script src="dollar-data.js"></script>
+        <script>
+            function showExchange () {
+                let table = document.getElementById('dollar-table')
+                for (let i=0; i<exchange.length; i++) {
+                    let tr = document.createElement('tr')
+                    let td = document.createElement('td')
+                    td.innerText = exchange[i];
+                    tr.appendChild(td);
+                    table.appendChild(tr);
+                }
+                let sum = 0
+                for (let i=0; i<exchange.length; i++) {
+                    sum += exchange[i]
+                }
+                let average = sum/exchange.length;
+                average = average.toFixed(2);
+                
+                let detail = document.getElementById('detail')
+                detail.innerHTML = `Средний курс: ${average}`
+
+                document.getElementById('btn').disabled = true;
+
+            }
+        </script>
+        <style>
+             button {
+                width:120px;
+                height: 30px;
+                margin: 10px;
+                margin-left: 0;
+                background-color: rgb(51, 51, 102);
+                border-radius: 5px;
+                color: white;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
+            button:disabled {
+                background-color: gray;
+                color: #ccc;
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+
+            table {
+                border: 2px solid rgba(51, 51, 102, 0.8)
+            }
+
+            table td {
+                font-size: 20px;
+            }
+
+            #detail {
+                font-size: 20px;
+                margin: 10px;
+                margin-left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+        </header>
+        <main>
+            <button id="btn" onclick="showExchange()">Курс доллара</button>
+            <table border='1' id="dollar-table"></table>
+            <div id="detail"></div>
+        </main>
+        <footer>
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
