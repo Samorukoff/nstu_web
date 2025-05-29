@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Саморуков Никита Олегович. Лабораторная 7</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32.png">
+        <script src="dollar-data.js"></script>
+        <script>
+            function getTodayTemperatures() {
+                const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
+                const output = document.getElementById('weather');
+                
+                fetch(url)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        const times = data.hourly.time;
+                        const temps = data.hourly.temperature_2m;
+        
+                        const today = new Date();
+                        const year = today.getFullYear();
+                        const month = String(today.getMonth() + 1).padStart(2, '0');
+                        const day = String(today.getDate()).padStart(2, '0');
+                        const todayStr = year + '-' + month + '-' + day;
+        
+                        output.innerHTML = "<b>Температура в Новосибирске на " + day + "." + month + "." + year + ":</b><br>";
+        
+                        const targetHours = ["08:00", "12:00", "20:00"];
+                        targetHours.forEach(function(hour) {
+                            const fullTime = todayStr + "T" + hour;
+                            const index = times.indexOf(fullTime);
+                            output.innerHTML += hour + ": " + temps[index] + "°C<br>";
+                            }
+                        );
+                    })
+            }
+        </script>
+        <style>
+            button {
+                width:245px;
+                height: 50px;
+                margin: 10px;
+                margin-left: 0;
+                background-color: rgb(51, 51, 102);
+                border-radius: 5px;
+                color: white;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
+            #weather {
+                width: 220px;
+                font-size: 20px;
+                line-height: 25px;
+                border: 2px solid rgb(51, 51, 102);
+                border-radius: 5px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+        </header>
+        <main>
+            <button onclick="getTodayTemperatures()">Показать погоду в Новосибирске</button>
+            <div id="weather"></div>
+        </main>
+        <footer>
+            &copy; Никита Саморуков, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
