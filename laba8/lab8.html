@@ -34,10 +34,10 @@
                     <div class="card-body">
                         <h2>Счётчик: {{counter}}</h2>
                         <button @click="incCounter" class="btn btn-primary me-2" v-if="counter < 10">
-                            <i class="bi bi-plus-square-fill"></i>
+                            <i class="bi bi-plus-square-fill fs-4"></i>
                         </button>
                         <button @click="decCounter" class="btn btn-primary" v-if="counter > 0">
-                            <i class="bi bi-dash-square-fill"></i>
+                            <i class="bi bi-dash-square-fill fs-4"></i>
                         </button>
                     </div>
                 </div>
@@ -53,16 +53,27 @@
                 </div>
                 <hr>
 
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 25rem;">
                     <div class="card-body">
                         <h2 class="card-title"><i class="bi bi-flower1"></i> Цветы</h2>
                         <ul class="list-group">
                             <li v-for="(flower, id) in flowers" class="list-group-item d-flex justify-content-between align-items-center">
-                                {{flower}} <button @click="edit(id, flower)" class="btn btn-primary">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
+                                <span>{{flower}}</span> 
+                                <div>
+                                    <button @click="editFlower(id, flower)" class="btn btn-primary me-2">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button @click="deleteFlower(id)" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
                             </li>
                         </ul>
+                        <div class="text-end">
+                            <button @click="addFlower" class="btn btn-primary my-3">
+                                Добавить цветок
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -73,6 +84,7 @@
                         <tr>
                             <th>Название</th>
                             <th>Редактировать</th>
+                            <th>Удалить</th>
                         </tr>
                     </thead>
                     <tr v-for="(flower, id) in flowers">
@@ -81,8 +93,14 @@
                             <span v-else>{{flower}}</span>
                         </td>
                         <td>
-                            <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower !== null">
+                            <button @click="editFlower(id, flower)" class="btn btn-primary" v-if="flower !== null">
                                 <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <div class="spinner-border text-primary" role="status" v-if="flower === null"></div>
+                        </td>
+                        <td>
+                            <button @click="deleteFlower(id)" class="btn btn-danger" v-if="flower !== null">
+                                <i class="bi bi-trash"></i>
                             </button>
                             <div class="spinner-border text-primary" role="status" v-if="flower === null"></div>
                         </td>
@@ -140,12 +158,23 @@
                     decCounter() {
                         this.counter--;
                     },
-                    edit(id, flower) {
+                    editFlower(id, flower) {
                         let newName = prompt('Введите имя цветка:', flower);
                         this.flowers[id] = null;
                         setTimeout(() => {
                             this.flowers[id] = newName;
                         }, 3000);
+                    },
+                    deleteFlower(id) {
+                        if (confirm(`Удалить "${this.flowers[id]}"?`)) {
+                            this.flowers.splice(id, 1);
+                        }
+                    },
+                      addFlower() {
+                        let newFlower = prompt("Введите название нового цветка");
+                        if (newFlower) {
+                            this.flowers.push(newFlower);
+                        }
                     },
                     sum() {
                         this.result = this.a + this.b;
